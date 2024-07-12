@@ -8,12 +8,12 @@ namespace DatabaseConnections
 {
     public partial class FormEmpleado : Form
     {
-        private ConnectionManager connectionManager;
+        private DalEmployee dalEmployee;
 
         public FormEmpleado()
         {
             InitializeComponent();
-            connectionManager = new ConnectionManager();
+            dalEmployee = new DalEmployee();
             SetPlaceholderText();
         }
 
@@ -68,22 +68,16 @@ namespace DatabaseConnections
                 DepartmentId = int.Parse(txtDepartmentId.Text)
             };
 
-            try
+          
+            bool success = dalEmployee.Insert(empleado);
+            if (success)
             {
-                bool success = connectionManager.InsertEmployee(empleado);
-                if (success)
-                {
-                    MessageBox.Show("Empleado guardado correctamente en la base de datos.");
-                    SetPlaceholderText();
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo guardar el empleado en la base de datos.");
-                }
+                MessageBox.Show("Empleado guardado correctamente en la base de datos.");
+                SetPlaceholderText();
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("No se pudo guardar el empleado en la base de datos.");
             }
         }
     }

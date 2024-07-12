@@ -1,24 +1,24 @@
 ﻿using DatabaseConections;
 using System;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace DatabaseConnections
 {
     public partial class FormDataBase : Form
     {
-        private ConnectionManager connectionManager;
-
         public FormDataBase()
         {
             InitializeComponent();
-            connectionManager = new ConnectionManager(); 
-
         }
 
         private void btnCrearEmpleado_Click(object sender, EventArgs e)
         {
             MostrarFormularioEmpleado();
+        }
+
+        private void btnListarEmpleados_Click(object sender, EventArgs e)
+        {
+            MostrarFormularioListarEmpleados();
         }
 
         private void MostrarFormularioEmpleado()
@@ -30,6 +30,17 @@ namespace DatabaseConnections
             formEmpleado.Dock = DockStyle.Fill;
             pnlFormularioEmpleado.Controls.Add(formEmpleado);
             formEmpleado.Show();
+        }
+
+        private void MostrarFormularioListarEmpleados()
+        {
+            pnlFormularioEmpleado.Controls.Clear();
+            var listEmployeesForm = new ListEmployeesForm();
+            listEmployeesForm.TopLevel = false;
+            listEmployeesForm.FormBorderStyle = FormBorderStyle.None;
+            listEmployeesForm.Dock = DockStyle.Fill;
+            pnlFormularioEmpleado.Controls.Add(listEmployeesForm);
+            listEmployeesForm.Show();
         }
     }
 }

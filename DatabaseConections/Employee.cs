@@ -8,6 +8,7 @@ namespace DatabaseConections
 {
     public class Employee
     {
+        private int employeeId;
         private string firstName;
         private string lastName;
         private string email;
@@ -15,9 +16,10 @@ namespace DatabaseConections
         private DateTime hireDate;
         private int jobId;
         private decimal salary;
-        private int managerId;
-        private int departmentId;
+        private int? managerId;
+        private int? departmentId;
 
+        public int EmployeeId { get => employeeId; set => employeeId = value; }
         public string FirstName { get => firstName; set => firstName = value; }
         public string LastName { get => lastName; set => lastName = value; }
         public string Email { get => email; set => email = value; }
@@ -25,15 +27,16 @@ namespace DatabaseConections
         public DateTime HireDate { get => hireDate; set => hireDate = value; }
         public int JobId { get => jobId; set => jobId = value; }
         public decimal Salary { get => salary; set => salary = value; }
-        public int ManagerId { get => managerId; set => managerId = value; }
-        public int DepartmentId { get => departmentId; set => departmentId = value; }
+        public int? ManagerId { get => managerId; set => managerId = value; }
+        public int? DepartmentId { get => departmentId; set => departmentId = value; }
 
         public Employee()
         {
 
         }
-        public Employee(string firstName, string lastName, string email, string phoneNumber, DateTime hireDate, int jobId, decimal salary, int managerId, int departmentId)
+        public Employee(int employeeId, string firstName, string lastName, string email, string phoneNumber, DateTime hireDate, int jobId, decimal salary, int? managerId, int? departmentId)
         {
+            this.employeeId = employeeId;
             this.firstName = firstName;
             this.lastName = lastName;
             this.email = email;
