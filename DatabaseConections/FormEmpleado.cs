@@ -1,20 +1,21 @@
 ﻿using DatabaseConections;
 using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace DatabaseConnections
-
 {
     public partial class FormEmpleado : Form
     {
-        private DalEmployee dalEmployee;
+        private Servicios servicios;
 
         public FormEmpleado()
         {
             InitializeComponent();
-            dalEmployee = new DalEmployee();
+            servicios = new Servicios(); 
             SetPlaceholderText();
+            CargarComboBoxes();
         }
 
         private void SetPlaceholderText()
@@ -23,10 +24,8 @@ namespace DatabaseConnections
             SetPlaceholder(txtLastName, "Last Name");
             SetPlaceholder(txtEmail, "Email");
             SetPlaceholder(txtPhoneNumber, "Phone Number");
-            SetPlaceholder(txtJobId, "Job ID");
             SetPlaceholder(txtSalary, "Salary");
             SetPlaceholder(txtManagerId, "Manager ID");
-            SetPlaceholder(txtDepartmentId, "Department ID");
         }
 
         private void SetPlaceholder(TextBox textBox, string placeholder)
@@ -53,6 +52,19 @@ namespace DatabaseConnections
             };
         }
 
+        private void CargarComboBoxes()
+        {
+            var departments = servicios.GetAllDepartments();
+            cmbDepartmentId.DisplayMember = "DepartmentName";
+            cmbDepartmentId.ValueMember = "DepartmentId";
+            cmbDepartmentId.DataSource = departments;
+
+            var jobs = servicios.GetAllJobs();
+            cmbJobId.DisplayMember = "JobTitle";
+            cmbJobId.ValueMember = "JobId";
+            cmbJobId.DataSource = jobs;
+        }
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Employee empleado = new Employee
@@ -62,14 +74,13 @@ namespace DatabaseConnections
                 Email = txtEmail.Text,
                 PhoneNumber = txtPhoneNumber.Text,
                 HireDate = DateTime.Parse(dtpHireDate.Text),
-                JobId = int.Parse(txtJobId.Text),
+                JobId = (int)cmbJobId.SelectedValue, 
                 Salary = decimal.Parse(txtSalary.Text),
                 ManagerId = int.Parse(txtManagerId.Text),
-                DepartmentId = int.Parse(txtDepartmentId.Text)
+                DepartmentId = (int)cmbDepartmentId.SelectedValue 
             };
 
-          
-            bool success = dalEmployee.Insert(empleado);
+            bool success = servicios.InsertEmployee(empleado);
             if (success)
             {
                 MessageBox.Show("Empleado guardado correctamente en la base de datos.");

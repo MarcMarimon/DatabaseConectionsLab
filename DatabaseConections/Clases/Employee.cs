@@ -48,6 +48,10 @@ namespace DatabaseConections
             this.departmentId = departmentId;
         }
 
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName} -- {Email}";
+        }
     }
 
 }

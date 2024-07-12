@@ -8,10 +8,10 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtPhoneNumber;
         private System.Windows.Forms.DateTimePicker dtpHireDate;
-        private System.Windows.Forms.TextBox txtJobId;
         private System.Windows.Forms.TextBox txtSalary;
         private System.Windows.Forms.TextBox txtManagerId;
-        private System.Windows.Forms.TextBox txtDepartmentId;
+        private System.Windows.Forms.ComboBox cmbJobId; 
+        private System.Windows.Forms.ComboBox cmbDepartmentId;
         private System.Windows.Forms.Button btnGuardar;
 
         protected override void Dispose(bool disposing)
@@ -30,10 +30,10 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.dtpHireDate = new System.Windows.Forms.DateTimePicker();
-            this.txtJobId = new System.Windows.Forms.TextBox();
             this.txtSalary = new System.Windows.Forms.TextBox();
             this.txtManagerId = new System.Windows.Forms.TextBox();
-            this.txtDepartmentId = new System.Windows.Forms.TextBox();
+            this.cmbJobId = new System.Windows.Forms.ComboBox(); 
+            this.cmbDepartmentId = new System.Windows.Forms.ComboBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -71,13 +71,7 @@
             this.dtpHireDate.Name = "dtpHireDate";
             this.dtpHireDate.Size = new System.Drawing.Size(200, 26);
             this.dtpHireDate.TabIndex = 4;
-            // 
-            // txtJobId
-            // 
-            this.txtJobId.Location = new System.Drawing.Point(271, 44);
-            this.txtJobId.Name = "txtJobId";
-            this.txtJobId.Size = new System.Drawing.Size(150, 26);
-            this.txtJobId.TabIndex = 5;
+            
             // 
             // txtSalary
             // 
@@ -93,12 +87,22 @@
             this.txtManagerId.Size = new System.Drawing.Size(150, 26);
             this.txtManagerId.TabIndex = 7;
             // 
-            // txtDepartmentId
+
+            // cmbJobId
             // 
-            this.txtDepartmentId.Location = new System.Drawing.Point(271, 164);
-            this.txtDepartmentId.Name = "txtDepartmentId";
-            this.txtDepartmentId.Size = new System.Drawing.Size(150, 26);
-            this.txtDepartmentId.TabIndex = 8;
+            this.cmbJobId.FormattingEnabled = true;
+            this.cmbJobId.Location = new System.Drawing.Point(271, 44);
+            this.cmbJobId.Name = "cmbJobId";
+            this.cmbJobId.Size = new System.Drawing.Size(150, 28);
+            this.cmbJobId.TabIndex = 5;
+            // 
+            // cmbDepartmentId
+            // 
+            this.cmbDepartmentId.FormattingEnabled = true;
+            this.cmbDepartmentId.Location = new System.Drawing.Point(271, 164);
+            this.cmbDepartmentId.Name = "cmbDepartmentId";
+            this.cmbDepartmentId.Size = new System.Drawing.Size(150, 28);
+            this.cmbDepartmentId.TabIndex = 8;
             // 
             // btnGuardar
             // 
@@ -116,10 +120,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.txtDepartmentId);
+            this.Controls.Add(this.cmbDepartmentId);
             this.Controls.Add(this.txtManagerId);
             this.Controls.Add(this.txtSalary);
-            this.Controls.Add(this.txtJobId);
+            this.Controls.Add(this.cmbJobId);
             this.Controls.Add(this.dtpHireDate);
             this.Controls.Add(this.txtPhoneNumber);
             this.Controls.Add(this.txtEmail);

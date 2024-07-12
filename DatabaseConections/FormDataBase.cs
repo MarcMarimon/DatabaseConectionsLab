@@ -6,41 +6,118 @@ namespace DatabaseConnections
 {
     public partial class FormDataBase : Form
     {
+        private Servicios servicios;
+        private bool listaVisible = false;
+        private FormEmpleado formEmpleado;
+
+        public bool ListaVisible { get => listaVisible; 
+            set 
+            {
+                listaVisible = value;
+                if (!value)
+                {
+                    lstDatos.DataSource = null;
+                    lblTitulo.Text = null;
+                }
+            }
+        }
+
         public FormDataBase()
         {
             InitializeComponent();
+            servicios = new Servicios();
+            OcultarListaYLimpiarBoton();
         }
 
         private void btnCrearEmpleado_Click(object sender, EventArgs e)
         {
             MostrarFormularioEmpleado();
+            MostrarBotonCerrarLimpiar();
         }
 
         private void btnListarEmpleados_Click(object sender, EventArgs e)
         {
-            MostrarFormularioListarEmpleados();
+            MostrarLista(servicios.GetAllEmployees(), "NOMBRE COMPLETO -- EMAIL");
+            MostrarBotonCerrarLimpiar();
+        }
+
+        private void btnListarDepartamentos_Click(object sender, EventArgs e)
+        {
+            MostrarLista(servicios.GetAllDepartments(), "NOMBRE DEPARTAMENTO -- LOCATION ID");
+            MostrarBotonCerrarLimpiar();
+        }
+
+        private void btnListarJobs_Click(object sender, EventArgs e)
+        {
+            MostrarLista(servicios.GetAllJobs(), "POSICIÓN -- RANGO SALARIAL");
+            MostrarBotonCerrarLimpiar();
+        }
+
+        private void btnCerrarLimpiar_Click(object sender, EventArgs e)
+        {
+            lblTitulo.Text = string.Empty;
+            lstDatos.DataSource = null;
+            OcultarListaYLimpiarBoton();
+            pnlFormulario.Controls.Clear();
+
+            if (formEmpleado != null && !formEmpleado.IsDisposed)
+            {
+                formEmpleado.Close();
+            }
         }
 
         private void MostrarFormularioEmpleado()
         {
-            pnlFormularioEmpleado.Controls.Clear();
-            var formEmpleado = new FormEmpleado();
+            OcultarListaYLimpiarBoton();
+            pnlFormulario.Controls.Clear();
+            formEmpleado = new FormEmpleado();
+            formEmpleado.FormClosed += FormEmpleado_FormClosed; 
             formEmpleado.TopLevel = false;
             formEmpleado.FormBorderStyle = FormBorderStyle.None;
             formEmpleado.Dock = DockStyle.Fill;
-            pnlFormularioEmpleado.Controls.Add(formEmpleado);
+            pnlFormulario.Controls.Add(formEmpleado);
             formEmpleado.Show();
+            lblTitulo.Text = "FORMULARIO EMPLEADO";
         }
 
-        private void MostrarFormularioListarEmpleados()
+        private void FormEmpleado_FormClosed(object sender, FormClosedEventArgs e)
         {
-            pnlFormularioEmpleado.Controls.Clear();
-            var listEmployeesForm = new ListEmployeesForm();
-            listEmployeesForm.TopLevel = false;
-            listEmployeesForm.FormBorderStyle = FormBorderStyle.None;
-            listEmployeesForm.Dock = DockStyle.Fill;
-            pnlFormularioEmpleado.Controls.Add(listEmployeesForm);
-            listEmployeesForm.Show();
+            OcultarBotonCerrarLimpiar();
+        }
+
+        private void MostrarLista(object dataSource, string titulo)
+        {
+            lblTitulo.Text = titulo;
+            lstDatos.DataSource = null;
+            lstDatos.DataSource = dataSource;
+            MostrarListaYLimpiarBoton();
+        }
+
+        private void MostrarListaYLimpiarBoton()
+        {
+            lstDatos.Visible = true;
+            btnCerrarLimpiar.Visible = true;
+            ListaVisible = true;
+        }
+
+        private void OcultarListaYLimpiarBoton()
+        {
+            lstDatos.Visible = false;
+            btnCerrarLimpiar.Visible = false;
+            ListaVisible = false;
+        }
+
+        private void MostrarBotonCerrarLimpiar()
+        {
+            if (!ListaVisible)
+            {
+                btnCerrarLimpiar.Visible = true;
+            }
+        }
+
+        private void OcultarBotonCerrarLimpiar()
+        {
+            btnCerrarLimpiar.Visible = false;
         }
     }
 }

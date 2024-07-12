@@ -23,5 +23,9 @@ namespace DatabaseConections
             this.departmentName = departmentName;
             this.locationId = locationId;
         }
+        public override string ToString()
+        {
+            return $" {DepartmentName} -- {LocationId}";
+        }
     }
 }

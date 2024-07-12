@@ -30,5 +30,9 @@ namespace DatabaseConections
             this.minSalary = minSalary;
             this.maxSalary = maxSalary;
         }
+        public override string ToString()
+        {
+            return $" {JobTitle} -- {MinSalary} - {MaxSalary}";
+        }
     }
 }

@@ -5,7 +5,12 @@
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.Button btnCrearEmpleado;
         private System.Windows.Forms.Button btnListarEmpleados;
-        private System.Windows.Forms.Panel pnlFormularioEmpleado;
+        private System.Windows.Forms.Button btnListarDepartamentos;
+        private System.Windows.Forms.Button btnListarJobs;
+        private System.Windows.Forms.Button btnCerrarLimpiar;
+        private System.Windows.Forms.Panel pnlFormulario;
+        private System.Windows.Forms.Label lblTitulo;
+        private System.Windows.Forms.ListBox lstDatos;
 
         protected override void Dispose(bool disposing)
         {
@@ -20,51 +25,114 @@
         {
             this.btnCrearEmpleado = new System.Windows.Forms.Button();
             this.btnListarEmpleados = new System.Windows.Forms.Button();
-            this.pnlFormularioEmpleado = new System.Windows.Forms.Panel();
+            this.btnListarDepartamentos = new System.Windows.Forms.Button();
+            this.btnListarJobs = new System.Windows.Forms.Button();
+            this.btnCerrarLimpiar = new System.Windows.Forms.Button();
+            this.pnlFormulario = new System.Windows.Forms.Panel();
+            this.lblTitulo = new System.Windows.Forms.Label();
+            this.lstDatos = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // btnCrearEmpleado
             // 
-            this.btnCrearEmpleado.Location = new System.Drawing.Point(20, 31);
+            this.btnCrearEmpleado.Location = new System.Drawing.Point(20, 20);
             this.btnCrearEmpleado.Name = "btnCrearEmpleado";
             this.btnCrearEmpleado.Size = new System.Drawing.Size(150, 50);
-            this.btnCrearEmpleado.TabIndex = 2;
+            this.btnCrearEmpleado.TabIndex = 0;
             this.btnCrearEmpleado.Text = "Crear Empleado";
             this.btnCrearEmpleado.UseVisualStyleBackColor = true;
             this.btnCrearEmpleado.Click += new System.EventHandler(this.btnCrearEmpleado_Click);
             // 
             // btnListarEmpleados
             // 
-            this.btnListarEmpleados.Location = new System.Drawing.Point(200, 31);
+            this.btnListarEmpleados.Location = new System.Drawing.Point(200, 20);
             this.btnListarEmpleados.Name = "btnListarEmpleados";
             this.btnListarEmpleados.Size = new System.Drawing.Size(150, 50);
-            this.btnListarEmpleados.TabIndex = 3;
+            this.btnListarEmpleados.TabIndex = 1;
             this.btnListarEmpleados.Text = "Listar Empleados";
             this.btnListarEmpleados.UseVisualStyleBackColor = true;
             this.btnListarEmpleados.Click += new System.EventHandler(this.btnListarEmpleados_Click);
             // 
-            // pnlFormularioEmpleado
+            // btnListarDepartamentos
             // 
-            this.pnlFormularioEmpleado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.btnListarDepartamentos.Location = new System.Drawing.Point(380, 20);
+            this.btnListarDepartamentos.Name = "btnListarDepartamentos";
+            this.btnListarDepartamentos.Size = new System.Drawing.Size(150, 50);
+            this.btnListarDepartamentos.TabIndex = 2;
+            this.btnListarDepartamentos.Text = "Listar Departamentos";
+            this.btnListarDepartamentos.UseVisualStyleBackColor = true;
+            this.btnListarDepartamentos.Click += new System.EventHandler(this.btnListarDepartamentos_Click);
+            // 
+            // btnListarJobs
+            // 
+            this.btnListarJobs.Location = new System.Drawing.Point(560, 20);
+            this.btnListarJobs.Name = "btnListarJobs";
+            this.btnListarJobs.Size = new System.Drawing.Size(150, 50);
+            this.btnListarJobs.TabIndex = 3;
+            this.btnListarJobs.Text = "Listar Jobs";
+            this.btnListarJobs.UseVisualStyleBackColor = true;
+            this.btnListarJobs.Click += new System.EventHandler(this.btnListarJobs_Click);
+            // 
+            // btnCerrarLimpiar
+            // 
+            this.btnCerrarLimpiar.Location = new System.Drawing.Point(740, 20);
+            this.btnCerrarLimpiar.Name = "btnCerrarLimpiar";
+            this.btnCerrarLimpiar.Size = new System.Drawing.Size(150, 50);
+            this.btnCerrarLimpiar.TabIndex = 4;
+            this.btnCerrarLimpiar.Text = "Cerrar/Limpiar";
+            this.btnCerrarLimpiar.UseVisualStyleBackColor = true;
+            this.btnCerrarLimpiar.Click += new System.EventHandler(this.btnCerrarLimpiar_Click);
+            // 
+            // pnlFormulario
+            // 
+            this.pnlFormulario.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlFormularioEmpleado.AutoScroll = true;
-            this.pnlFormularioEmpleado.Location = new System.Drawing.Point(20, 106);
-            this.pnlFormularioEmpleado.Name = "pnlFormularioEmpleado";
-            this.pnlFormularioEmpleado.Size = new System.Drawing.Size(760, 396);
-            this.pnlFormularioEmpleado.TabIndex = 4;
+            this.pnlFormulario.AutoScroll = true;
+            this.pnlFormulario.Location = new System.Drawing.Point(20, 90);
+            this.pnlFormulario.Name = "pnlFormulario";
+            this.pnlFormulario.Size = new System.Drawing.Size(880, 400);
+            this.pnlFormulario.TabIndex = 5;
+            // 
+            // lblTitulo
+            // 
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Location = new System.Drawing.Point(20, 70);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(0, 25);
+            this.lblTitulo.TabIndex = 6;
+            // 
+            // lstDatos
+            // 
+            this.lstDatos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstDatos.FormattingEnabled = true;
+            this.lstDatos.ItemHeight = 20;
+            this.lstDatos.Location = new System.Drawing.Point(20, 100);
+            this.lstDatos.Name = "lstDatos";
+            this.lstDatos.Size = new System.Drawing.Size(880, 324);
+            this.lstDatos.TabIndex = 7;
             // 
             // FormDataBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 588);
-            this.Controls.Add(this.pnlFormularioEmpleado);
+            this.ClientSize = new System.Drawing.Size(920, 510);
+            this.Controls.Add(this.lstDatos);
+            this.Controls.Add(this.lblTitulo);
+            this.Controls.Add(this.pnlFormulario);
+            this.Controls.Add(this.btnCerrarLimpiar);
+            this.Controls.Add(this.btnListarJobs);
+            this.Controls.Add(this.btnListarDepartamentos);
             this.Controls.Add(this.btnListarEmpleados);
             this.Controls.Add(this.btnCrearEmpleado);
             this.Name = "FormDataBase";
             this.Text = "FormDatabase";
             this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
     }
 }

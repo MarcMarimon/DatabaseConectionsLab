@@ -48,11 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionManager.cs" />
-    <Compile Include="DalDepartments.cs" />
-    <Compile Include="DalEmployee.cs" />
-    <Compile Include="DalJobs.cs" />
-    <Compile Include="Departments.cs" />
-    <Compile Include="Employee.cs" />
+    <Compile Include="DALComps\DalDepartment.cs" />
+    <Compile Include="DALComps\DalEmployee.cs" />
+    <Compile Include="DALComps\DalJob.cs" />
+    <Compile Include="Clases\Department.cs" />
+    <Compile Include="Clases\Employee.cs" />
     <Compile Include="FormDataBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,23 +65,15 @@
     <Compile Include="FormEmpleado.Designer.cs">
       <DependentUpon>FormEmpleado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Jobs.cs" />
-    <Compile Include="ListEmployeesForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ListEmployeesForm.Designer.cs">
-      <DependentUpon>ListEmployeesForm.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Clases\Job.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicios.cs" />
     <EmbeddedResource Include="FormDataBase.resx">
       <DependentUpon>FormDataBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpleado.resx">
       <DependentUpon>FormEmpleado.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ListEmployeesForm.resx">
-      <DependentUpon>ListEmployeesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

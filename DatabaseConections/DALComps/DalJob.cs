@@ -5,23 +5,23 @@ using System.Data.SqlClient;
 
 namespace DatabaseConections
 {
-    public class DalDepartments
+    public class DalJob
     {
         private ConnectionManager connectionManager;
         private SqlConnection dataConnection;
 
-        public DalDepartments()
+        public DalJob()
         {
             connectionManager = new ConnectionManager();
             dataConnection = connectionManager.DataConnection;
         }
 
-        public List<Department> GetAllDepartments()
+        public List<Job> GetAll()
         {
-            List<Department> departments = new List<Department>();
+            List<Job> jobs = new List<Job>();
             try
             {
-                string query = "SELECT * FROM departments";
+                string query = "SELECT * FROM jobs";
                 SqlCommand command = new SqlCommand(query, dataConnection);
 
                 dataConnection.Open();
@@ -29,24 +29,26 @@ namespace DatabaseConections
 
                 while (records.Read())
                 {
-                    int departmentId = records.GetInt32(records.GetOrdinal("department_id"));
-                    string departmentName = records.GetString(records.GetOrdinal("department_name"));
-                    int locationId = records.GetInt32(records.GetOrdinal("location_id"));
+                    int jobId = records.GetInt32(records.GetOrdinal("job_id"));
+                    string jobTitle = records.GetString(records.GetOrdinal("job_title"));
+                    decimal? minSalary = records.IsDBNull(records.GetOrdinal("min_salary")) ? (decimal?)null : records.GetDecimal(records.GetOrdinal("min_salary"));
+                    decimal? maxSalary = records.IsDBNull(records.GetOrdinal("max_salary")) ? (decimal?)null : records.GetDecimal(records.GetOrdinal("max_salary"));
 
-                    Department department = new Department
+                    Job job = new Job
                     {
-                        DepartmentId = departmentId,
-                        DepartmentName = departmentName,
-                        LocationId = locationId
+                        JobId = jobId,
+                        JobTitle = jobTitle,
+                        MinSalary = minSalary,
+                        MaxSalary = maxSalary
                     };
 
-                    departments.Add(department);
+                    jobs.Add(job);
                 }
                 records.Close();
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener los departamentos", ex);
+                return null;
             }
             finally
             {
@@ -55,7 +57,7 @@ namespace DatabaseConections
                     dataConnection.Close();
                 }
             }
-            return departments;
+            return jobs;
         }
     }
 }
