@@ -102,5 +102,92 @@ namespace DatabaseConections
             }
             return employees;
         }
+        public Employee GetById(int employeeId)
+        {
+            Employee employee = null;
+            try
+            {
+                string query = "SELECT * FROM employees WHERE employee_id = @EmployeeId";
+                SqlCommand command = new SqlCommand(query, dataConnection);
+                command.Parameters.AddWithValue("@EmployeeId", employeeId);
+
+                dataConnection.Open();
+                SqlDataReader records = command.ExecuteReader();
+
+                if (records.Read())
+                {
+                    employee = new Employee();
+                    employee.EmployeeId = records.GetInt32(records.GetOrdinal("employee_id"));
+                    employee.FirstName = records.IsDBNull(records.GetOrdinal("first_name")) ? null : records.GetString(records.GetOrdinal("first_name"));
+                    employee.LastName = records.GetString(records.GetOrdinal("last_name"));
+                    employee.Email = records.GetString(records.GetOrdinal("email"));
+                    employee.PhoneNumber = records.IsDBNull(records.GetOrdinal("phone_number")) ? null : records.GetString(records.GetOrdinal("phone_number"));
+                    employee.HireDate = records.GetDateTime(records.GetOrdinal("hire_date"));
+                    employee.JobId = records.GetInt32(records.GetOrdinal("job_id"));
+                    employee.Salary = records.GetDecimal(records.GetOrdinal("salary"));
+                    employee.ManagerId = records.IsDBNull(records.GetOrdinal("manager_id")) ? (int?)null : records.GetInt32(records.GetOrdinal("manager_id"));
+                    employee.DepartmentId = records.IsDBNull(records.GetOrdinal("department_id")) ? (int?)null : records.GetInt32(records.GetOrdinal("department_id"));
+                }
+                records.Close();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                if (dataConnection.State == System.Data.ConnectionState.Open)
+                {
+                    dataConnection.Close();
+                }
+            }
+            return employee;
+        }
+
+        public bool Update(Employee employee)
+        {
+            try
+            {
+                string query = @"UPDATE employees 
+                         SET first_name = @FirstName, 
+                             last_name = @LastName, 
+                             email = @Email, 
+                             phone_number = @PhoneNumber, 
+                             hire_date = @HireDate, 
+                             job_id = @JobId, 
+                             salary = @Salary, 
+                             manager_id = @ManagerId, 
+                             department_id = @DepartmentId 
+                         WHERE employee_id = @EmployeeId";
+
+                SqlCommand command = new SqlCommand(query, dataConnection);
+                command.Parameters.AddWithValue("@FirstName", employee.FirstName);
+                command.Parameters.AddWithValue("@LastName", employee.LastName);
+                command.Parameters.AddWithValue("@Email", employee.Email);
+                command.Parameters.AddWithValue("@PhoneNumber", employee.PhoneNumber);
+                command.Parameters.AddWithValue("@HireDate", employee.HireDate);
+                command.Parameters.AddWithValue("@JobId", employee.JobId);
+                command.Parameters.AddWithValue("@Salary", employee.Salary);
+                command.Parameters.AddWithValue("@ManagerId", employee.ManagerId ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@DepartmentId", employee.DepartmentId ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@EmployeeId", employee.EmployeeId);
+
+                dataConnection.Open();
+                int rowsAffected = command.ExecuteNonQuery();
+
+                return rowsAffected > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                if (dataConnection.State == System.Data.ConnectionState.Open)
+                {
+                    dataConnection.Close();
+                }
+            }
+        }
     }
 }

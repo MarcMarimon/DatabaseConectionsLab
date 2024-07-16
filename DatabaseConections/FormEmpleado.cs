@@ -1,4 +1,5 @@
 ﻿using DatabaseConections;
+using DatabaseConnections;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -9,12 +10,24 @@ namespace DatabaseConnections
     public partial class FormEmpleado : Form
     {
         private Servicios servicios;
+        private Employee empleadoModificar; 
 
-        public FormEmpleado()
+        public FormEmpleado(Employee empleado = null)
         {
             InitializeComponent();
-            servicios = new Servicios(); 
-            SetPlaceholderText();
+            servicios = new Servicios();
+
+            if (empleado != null)
+            {
+                empleadoModificar = empleado;
+                CargarDatosEmpleado(empleado);
+            }
+            else
+            {
+                empleadoModificar = null;
+                SetPlaceholderText();
+            }
+
             CargarComboBoxes();
         }
 
@@ -65,6 +78,19 @@ namespace DatabaseConnections
             cmbJobId.DataSource = jobs;
         }
 
+        private void CargarDatosEmpleado(Employee empleado)
+        {
+            txtFirstName.Text = empleado.FirstName;
+            txtLastName.Text = empleado.LastName;
+            txtEmail.Text = empleado.Email;
+            txtPhoneNumber.Text = empleado.PhoneNumber;
+            dtpHireDate.Value = empleado.HireDate;
+            cmbJobId.SelectedValue = empleado.JobId;
+            txtSalary.Text = empleado.Salary.ToString();
+            txtManagerId.Text = empleado.ManagerId.HasValue ? empleado.ManagerId.ToString() : "";
+            cmbDepartmentId.SelectedValue = empleado.DepartmentId;
+        }
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Employee empleado = new Employee
@@ -74,17 +100,28 @@ namespace DatabaseConnections
                 Email = txtEmail.Text,
                 PhoneNumber = txtPhoneNumber.Text,
                 HireDate = DateTime.Parse(dtpHireDate.Text),
-                JobId = (int)cmbJobId.SelectedValue, 
+                JobId = (int)cmbJobId.SelectedValue,
                 Salary = decimal.Parse(txtSalary.Text),
-                ManagerId = int.Parse(txtManagerId.Text),
-                DepartmentId = (int)cmbDepartmentId.SelectedValue 
+                ManagerId = string.IsNullOrEmpty(txtManagerId.Text) ? (int?)null : int.Parse(txtManagerId.Text),
+                DepartmentId = (int)cmbDepartmentId.SelectedValue
             };
 
-            bool success = servicios.InsertEmployee(empleado);
+            bool success = false;
+            if (empleadoModificar == null)
+            {
+                success = servicios.InsertEmployee(empleado);
+            }
+            else
+            {
+                empleado.EmployeeId = empleadoModificar.EmployeeId; 
+                success = servicios.UpdateEmployee(empleado);
+            }
+
             if (success)
             {
                 MessageBox.Show("Empleado guardado correctamente en la base de datos.");
                 SetPlaceholderText();
+                Close(); 
             }
             else
             {

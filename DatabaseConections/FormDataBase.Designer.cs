@@ -35,9 +35,10 @@
             // 
             // btnCrearEmpleado
             // 
-            this.btnCrearEmpleado.Location = new System.Drawing.Point(20, 20);
+            this.btnCrearEmpleado.Location = new System.Drawing.Point(13, 13);
+            this.btnCrearEmpleado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCrearEmpleado.Name = "btnCrearEmpleado";
-            this.btnCrearEmpleado.Size = new System.Drawing.Size(150, 50);
+            this.btnCrearEmpleado.Size = new System.Drawing.Size(100, 32);
             this.btnCrearEmpleado.TabIndex = 0;
             this.btnCrearEmpleado.Text = "Crear Empleado";
             this.btnCrearEmpleado.UseVisualStyleBackColor = true;
@@ -45,9 +46,10 @@
             // 
             // btnListarEmpleados
             // 
-            this.btnListarEmpleados.Location = new System.Drawing.Point(200, 20);
+            this.btnListarEmpleados.Location = new System.Drawing.Point(133, 13);
+            this.btnListarEmpleados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnListarEmpleados.Name = "btnListarEmpleados";
-            this.btnListarEmpleados.Size = new System.Drawing.Size(150, 50);
+            this.btnListarEmpleados.Size = new System.Drawing.Size(100, 32);
             this.btnListarEmpleados.TabIndex = 1;
             this.btnListarEmpleados.Text = "Listar Empleados";
             this.btnListarEmpleados.UseVisualStyleBackColor = true;
@@ -55,9 +57,10 @@
             // 
             // btnListarDepartamentos
             // 
-            this.btnListarDepartamentos.Location = new System.Drawing.Point(380, 20);
+            this.btnListarDepartamentos.Location = new System.Drawing.Point(253, 13);
+            this.btnListarDepartamentos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnListarDepartamentos.Name = "btnListarDepartamentos";
-            this.btnListarDepartamentos.Size = new System.Drawing.Size(150, 50);
+            this.btnListarDepartamentos.Size = new System.Drawing.Size(120, 32);
             this.btnListarDepartamentos.TabIndex = 2;
             this.btnListarDepartamentos.Text = "Listar Departamentos";
             this.btnListarDepartamentos.UseVisualStyleBackColor = true;
@@ -65,9 +68,10 @@
             // 
             // btnListarJobs
             // 
-            this.btnListarJobs.Location = new System.Drawing.Point(560, 20);
+            this.btnListarJobs.Location = new System.Drawing.Point(392, 13);
+            this.btnListarJobs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnListarJobs.Name = "btnListarJobs";
-            this.btnListarJobs.Size = new System.Drawing.Size(150, 50);
+            this.btnListarJobs.Size = new System.Drawing.Size(100, 32);
             this.btnListarJobs.TabIndex = 3;
             this.btnListarJobs.Text = "Listar Jobs";
             this.btnListarJobs.UseVisualStyleBackColor = true;
@@ -75,9 +79,10 @@
             // 
             // btnCerrarLimpiar
             // 
-            this.btnCerrarLimpiar.Location = new System.Drawing.Point(740, 20);
+            this.btnCerrarLimpiar.Location = new System.Drawing.Point(511, 13);
+            this.btnCerrarLimpiar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCerrarLimpiar.Name = "btnCerrarLimpiar";
-            this.btnCerrarLimpiar.Size = new System.Drawing.Size(150, 50);
+            this.btnCerrarLimpiar.Size = new System.Drawing.Size(89, 32);
             this.btnCerrarLimpiar.TabIndex = 4;
             this.btnCerrarLimpiar.Text = "Cerrar/Limpiar";
             this.btnCerrarLimpiar.UseVisualStyleBackColor = true;
@@ -89,18 +94,20 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlFormulario.AutoScroll = true;
-            this.pnlFormulario.Location = new System.Drawing.Point(20, 90);
+            this.pnlFormulario.Location = new System.Drawing.Point(13, 58);
+            this.pnlFormulario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlFormulario.Name = "pnlFormulario";
-            this.pnlFormulario.Size = new System.Drawing.Size(880, 400);
+            this.pnlFormulario.Size = new System.Drawing.Size(587, 260);
             this.pnlFormulario.TabIndex = 5;
             // 
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(20, 70);
+            this.lblTitulo.Location = new System.Drawing.Point(13, 46);
+            this.lblTitulo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(0, 25);
+            this.lblTitulo.Size = new System.Drawing.Size(0, 17);
             this.lblTitulo.TabIndex = 6;
             // 
             // lstDatos
@@ -109,17 +116,17 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstDatos.FormattingEnabled = true;
-            this.lstDatos.ItemHeight = 20;
-            this.lstDatos.Location = new System.Drawing.Point(20, 100);
+            this.lstDatos.Location = new System.Drawing.Point(13, 65);
+            this.lstDatos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lstDatos.Name = "lstDatos";
-            this.lstDatos.Size = new System.Drawing.Size(880, 324);
+            this.lstDatos.Size = new System.Drawing.Size(588, 212);
             this.lstDatos.TabIndex = 7;
             // 
             // FormDataBase
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(920, 510);
+            this.ClientSize = new System.Drawing.Size(613, 332);
             this.Controls.Add(this.lstDatos);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.pnlFormulario);
@@ -128,6 +135,7 @@
             this.Controls.Add(this.btnListarDepartamentos);
             this.Controls.Add(this.btnListarEmpleados);
             this.Controls.Add(this.btnCrearEmpleado);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormDataBase";
             this.Text = "FormDatabase";
             this.ResumeLayout(false);

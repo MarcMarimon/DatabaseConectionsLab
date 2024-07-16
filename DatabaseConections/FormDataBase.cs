@@ -10,8 +10,10 @@ namespace DatabaseConnections
         private bool listaVisible = false;
         private FormEmpleado formEmpleado;
 
-        public bool ListaVisible { get => listaVisible; 
-            set 
+        public bool ListaVisible
+        {
+            get => listaVisible;
+            set
             {
                 listaVisible = value;
                 if (!value)
@@ -27,11 +29,12 @@ namespace DatabaseConnections
             InitializeComponent();
             servicios = new Servicios();
             OcultarListaYLimpiarBoton();
+            lstDatos.SelectedIndexChanged += LstDatos_SelectedIndexChanged;
         }
 
         private void btnCrearEmpleado_Click(object sender, EventArgs e)
         {
-            MostrarFormularioEmpleado();
+            MostrarFormularioEmpleado(null);
             MostrarBotonCerrarLimpiar();
         }
 
@@ -66,12 +69,12 @@ namespace DatabaseConnections
             }
         }
 
-        private void MostrarFormularioEmpleado()
+        private void MostrarFormularioEmpleado(Employee empleado)
         {
             OcultarListaYLimpiarBoton();
             pnlFormulario.Controls.Clear();
-            formEmpleado = new FormEmpleado();
-            formEmpleado.FormClosed += FormEmpleado_FormClosed; 
+            formEmpleado = new FormEmpleado(empleado);
+            formEmpleado.FormClosed += FormEmpleado_FormClosed;
             formEmpleado.TopLevel = false;
             formEmpleado.FormBorderStyle = FormBorderStyle.None;
             formEmpleado.Dock = DockStyle.Fill;
@@ -83,6 +86,7 @@ namespace DatabaseConnections
         private void FormEmpleado_FormClosed(object sender, FormClosedEventArgs e)
         {
             OcultarBotonCerrarLimpiar();
+            RefreshData();
         }
 
         private void MostrarLista(object dataSource, string titulo)
@@ -118,6 +122,22 @@ namespace DatabaseConnections
         private void OcultarBotonCerrarLimpiar()
         {
             btnCerrarLimpiar.Visible = false;
+        }
+
+        private void RefreshData()
+        {
+            if (lblTitulo.Text == "NOMBRE COMPLETO -- EMAIL")
+            {
+                btnListarEmpleados_Click(null, null);
+            }
+        }
+
+        private void LstDatos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstDatos.SelectedItem != null && lstDatos.SelectedItem is Employee selectedEmployee)
+            {
+                MostrarFormularioEmpleado(selectedEmployee);
+            }
         }
     }
 }

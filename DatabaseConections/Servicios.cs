@@ -36,5 +36,14 @@ namespace DatabaseConections
         {
             return dalEmployee.Insert(employee);
         }
+        public Employee GetEmployeeById(int employeeId)
+        {
+            return dalEmployee.GetById(employeeId);
+        }
+
+        public bool UpdateEmployee(Employee employee)
+        {
+            return dalEmployee.Update(employee);
+        }
     }
 }
